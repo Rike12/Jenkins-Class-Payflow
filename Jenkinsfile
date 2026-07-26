@@ -17,14 +17,17 @@ pipeline {
                 echo 'Running placeholder tests...'
             }
         }
-      stage('Deploy') {
+   stage('Deploy') {
     steps {
         echo 'Deploying PayFlow landing page to staging...'
         sh '''
-            mkdir -p $WORKSPACE/deploy
-            cp index.html $WORKSPACE/deploy/index.html
+            whoami
+            pwd
+            ls -l
+            ls -ld /var/payflow-deploy
+            cp index.html /var/payflow-deploy/index.html
         '''
-        echo 'Deployment complete. Files are in workspace deploy folder.'
+        echo 'Deployment complete. View it at http://localhost:8081'
     }
 }
     }
